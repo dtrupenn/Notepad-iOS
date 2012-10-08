@@ -30,6 +30,8 @@
 		37AFD4A31622295100922DF6 /* notepad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AFD4A11622295100922DF6 /* notepad@2x.png */; };
 		37AFD4AA1622597D00922DF6 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AFD4A81622597D00922DF6 /* map.png */; };
 		37AFD4AB1622597D00922DF6 /* map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AFD4A91622597D00922DF6 /* map@2x.png */; };
+		37AFD4B71622BA6100922DF6 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AFD4B51622BA6100922DF6 /* Icon.png */; };
+		37AFD4B81622BA6100922DF6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37AFD4B61622BA6100922DF6 /* Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,8 @@
 		37AFD4A11622295100922DF6 /* notepad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notepad@2x.png"; sourceTree = "<group>"; };
 		37AFD4A81622597D00922DF6 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		37AFD4A91622597D00922DF6 /* map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map@2x.png"; sourceTree = "<group>"; };
+		37AFD4B51622BA6100922DF6 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		37AFD4B61622BA6100922DF6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 		3749E9581621414C005DC3E6 = {
 			isa = PBXGroup;
 			children = (
+				37AFD4B51622BA6100922DF6 /* Icon.png */,
+				37AFD4B61622BA6100922DF6 /* Icon@2x.png */,
 				3749E96D1621414D005DC3E6 /* Notepad */,
 				3749E9661621414D005DC3E6 /* Frameworks */,
 				3749E9641621414C005DC3E6 /* Products */,
@@ -218,6 +224,8 @@
 				37AFD4A31622295100922DF6 /* notepad@2x.png in Resources */,
 				37AFD4AA1622597D00922DF6 /* map.png in Resources */,
 				37AFD4AB1622597D00922DF6 /* map@2x.png in Resources */,
+				37AFD4B71622BA6100922DF6 /* Icon.png in Resources */,
+				37AFD4B81622BA6100922DF6 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
