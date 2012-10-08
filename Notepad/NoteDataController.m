@@ -20,10 +20,6 @@
 - (void)initializeDefaultDataList {
     NSMutableArray *noteList = [[NSMutableArray alloc] init];
     self.masterNoteList = noteList;
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    locationManager.distanceFilter = kCLDistanceFilterNone;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager startUpdatingLocation];
     [self addNoteWithTitle:@"Welcome" content:@"Welcome to Notepad!"];
 }
 
@@ -35,7 +31,8 @@
 
 - (id)init {
     if (self = [super init]) {
-        [self initializeDefaultDataList];
+        NSMutableArray *noteList = [[NSMutableArray alloc] init];
+        self.masterNoteList = noteList;
         return self;
     }
     return nil;

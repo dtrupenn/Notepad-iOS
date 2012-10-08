@@ -145,6 +145,20 @@
 }
 
 - (IBAction)done:(id)sender {
-    [[self delegate] addNoteViewControllerDidFinish:self title:self.titleInput.text note:self.noteInput.text];
+    BOOL locationAllowed = [CLLocationManager locationServicesEnabled];
+    CLAuthorizationStatus allowed = [CLLocationManager authorizationStatus];
+    NSLog(@"LocationAllowed: %s", locationAllowed ? "true" : "false");
+    
+    if (locationAllowed==NO || allowed != kCLAuthorizationStatusAuthorized) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Service Disabled"
+                                                        message:@"To re-enable, please go to Settings and turn on Location Service for this app."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        //[alert release];
+    } else {
+        [[self delegate] addNoteViewControllerDidFinish:self title:self.titleInput.text note:self.noteInput.text];
+    }
 }
 @end

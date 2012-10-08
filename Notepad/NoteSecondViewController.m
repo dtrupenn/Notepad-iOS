@@ -8,6 +8,7 @@
 
 #import "NoteSecondViewController.h"
 #import "NoteMasterViewController.h"
+#import "Note.h"
 
 @interface NoteSecondViewController ()
 
@@ -21,6 +22,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+//    NoteMasterViewController *viewController = [[[[[[UIApplication sharedApplication] keyWindow] rootViewController] navigationController] viewControllers] objectAtIndex:2];
+//    NSLog(@"Number of items: %d", viewController.dataController.countOfList);
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,7 +39,7 @@
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
     
-    [mapView setMapType:MKMapTypeStandard];
+    //[mapView setMapType:MKMapTypeStandard];
     [mapView setZoomEnabled:YES];
     [mapView setScrollEnabled:YES];
     MKCoordinateRegion region = { {0.0, 0.0}, {0.0, 0.0} };
@@ -72,5 +76,25 @@
         default:
             break;
     }
+}
+
+- (void)update:(Note *)data {
+    
+    //[mapView setMapType:MKMapTypeStandard];
+    [mapView setZoomEnabled:YES];
+    [mapView setScrollEnabled:YES];
+    
+    MKPointAnnotation* annot = [[MKPointAnnotation alloc] init];
+    [annot setCoordinate: data.location.location.coordinate];
+    [annot setTitle:data.title];
+    [mapView addAnnotation:annot];
+
+    MKCoordinateRegion region = { {0.0, 0.0}, {0.0, 0.0} };
+    region.center.latitude = data.location.location.coordinate.latitude;
+    region.center.longitude = data.location.location.coordinate.longitude;
+    region.span.longitudeDelta = 0.007f;
+    region.span.latitudeDelta = 0.007f;
+    [mapView setRegion:region animated:YES];
+    
 }
 @end

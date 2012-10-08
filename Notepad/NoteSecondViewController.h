@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
-@class NoteDataController;
+@class Note;
 
 @interface NoteSecondViewController : UIViewController
 
-@property (strong, nonatomic) NoteDataController *notes;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *myControl;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 - (IBAction)locate:(id)sender;
 - (IBAction)segmentedButton:(id)sender;
+- (void)update:(Note *)data;
 
 @end
