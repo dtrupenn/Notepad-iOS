@@ -16,8 +16,8 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *myControl;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-- (IBAction)locate:(id)sender;
 - (IBAction)segmentedButton:(id)sender;
 - (void)update:(Note *)data;
+- (void)remove:(NSString *) title;
 
 @end

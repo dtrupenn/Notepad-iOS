@@ -11,6 +11,7 @@
 #import "Note.h"
 #import "NoteDataController.h"
 #import "AddNoteViewController.h"
+#import "NoteSecondViewController.h"
 
 
 @interface NoteMasterViewController () <AddNoteViewControllerDelegate>
@@ -90,6 +91,9 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+        NoteSecondViewController *parent = [[[window rootViewController] childViewControllers] objectAtIndex:1];
+        [parent remove:[self.dataController objectInListAtIndex:indexPath.row].title];
         [_dataController removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -169,6 +173,9 @@
 - (void)addNoteViewControllerDidFinish:(AddNoteViewController *)controller title:(NSString *)title note:(NSString *)note {
     if ([title length] || [note length]) {
         [self.dataController addNoteWithTitle:title content:note];
+        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+        NoteSecondViewController *parent = [[[window rootViewController] childViewControllers] objectAtIndex:1];
+        [parent update:[self.dataController objectInListAtIndex:[self.dataController countOfList] - 1]];
         [[self tableView] reloadData];
     }
     [self dismissViewControllerAnimated:(YES) completion:nil];

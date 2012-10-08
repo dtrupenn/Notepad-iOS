@@ -7,11 +7,9 @@
 //
 
 #import "NoteSecondViewController.h"
-#import "NoteMasterViewController.h"
 #import "Note.h"
 
-@interface NoteSecondViewController ()
-
+@interface NoteSecondViewController () 
 @end
 
 @implementation NoteSecondViewController
@@ -21,10 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-//    NoteMasterViewController *viewController = [[[[[[UIApplication sharedApplication] keyWindow] rootViewController] navigationController] viewControllers] objectAtIndex:2];
-//    NSLog(@"Number of items: %d", viewController.dataController.countOfList);
-    
+    [mapView setZoomEnabled:YES];
+    [mapView setScrollEnabled:YES];
+	// Do any additional setup after loading the view, typically from a nib.    
 }
 
 - (void)didReceiveMemoryWarning
@@ -33,31 +30,31 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)locate:(id)sender {
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    locationManager.distanceFilter = kCLDistanceFilterNone;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager startUpdatingLocation];
-    
-    //[mapView setMapType:MKMapTypeStandard];
-    [mapView setZoomEnabled:YES];
-    [mapView setScrollEnabled:YES];
-    MKCoordinateRegion region = { {0.0, 0.0}, {0.0, 0.0} };
-    region.center.latitude = locationManager.location.coordinate.latitude;
-    region.center.longitude = locationManager.location.coordinate.longitude;
-    region.span.longitudeDelta = 0.007f;
-    region.span.latitudeDelta = 0.007f;
-    [mapView setRegion:region animated:YES];
-    [mapView setDelegate:sender];
-    
-    //Adding Annotation
-    [mapView setCenterCoordinate:locationManager.location.coordinate];
-    MKPointAnnotation* annot = [[MKPointAnnotation alloc] init];
-    [annot setCoordinate: locationManager.location.coordinate];
-    [annot setTitle:@"My location"];
-    
-    [mapView addAnnotation:annot];
-}
+//- (IBAction)locate:(id)sender {
+//    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+//    locationManager.distanceFilter = kCLDistanceFilterNone;
+//    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    [locationManager startUpdatingLocation];
+//    
+//    //[mapView setMapType:MKMapTypeStandard];
+//    [mapView setZoomEnabled:YES];
+//    [mapView setScrollEnabled:YES];
+//    MKCoordinateRegion region = { {0.0, 0.0}, {0.0, 0.0} };
+//    region.center.latitude = locationManager.location.coordinate.latitude;
+//    region.center.longitude = locationManager.location.coordinate.longitude;
+//    region.span.longitudeDelta = 0.007f;
+//    region.span.latitudeDelta = 0.007f;
+//    [mapView setRegion:region animated:YES];
+//    [mapView setDelegate:sender];
+//    
+//    //Adding Annotation
+//    [mapView setCenterCoordinate:locationManager.location.coordinate];
+//    MKPointAnnotation* annot = [[MKPointAnnotation alloc] init];
+//    [annot setCoordinate: locationManager.location.coordinate];
+//    [annot setTitle:@"My location"];
+//    
+//    [mapView addAnnotation:annot];
+//}
 
 - (IBAction)segmentedButton:(id)sender {
     switch (myControl.selectedSegmentIndex) {
@@ -79,16 +76,11 @@
 }
 
 - (void)update:(Note *)data {
-    
-    //[mapView setMapType:MKMapTypeStandard];
-    [mapView setZoomEnabled:YES];
-    [mapView setScrollEnabled:YES];
-    
     MKPointAnnotation* annot = [[MKPointAnnotation alloc] init];
     [annot setCoordinate: data.location.location.coordinate];
     [annot setTitle:data.title];
     [mapView addAnnotation:annot];
-
+    
     MKCoordinateRegion region = { {0.0, 0.0}, {0.0, 0.0} };
     region.center.latitude = data.location.location.coordinate.latitude;
     region.center.longitude = data.location.location.coordinate.longitude;
@@ -96,5 +88,17 @@
     region.span.latitudeDelta = 0.007f;
     [mapView setRegion:region animated:YES];
     
+}
+
+- (void)remove:(NSString *)title {
+    NSArray *annots = [mapView annotations];
+    for (int i = 0; i < annots.count; i++) {
+        MKPointAnnotation *annot = [annots objectAtIndex:i];
+        if ([title isEqualToString:[annot title]]) {
+            [mapView removeAnnotation:annot];
+            break;
+        }
+    }
+
 }
 @end

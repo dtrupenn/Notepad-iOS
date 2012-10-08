@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 @class Note;
 
+
 @interface NoteDataController : NSObject
 
 @property (nonatomic, copy) NSMutableArray *masterNoteList;
